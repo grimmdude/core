@@ -62,7 +62,6 @@ interface CommonSettingsItemOptions extends Mithril.Attributes {
   label: Mithril.Children;
   help?: Mithril.Children;
   className?: string;
-  formGroupAttrs?: Mithril.Attributes;
 }
 
 /**
@@ -220,7 +219,7 @@ export default abstract class AdminPage<CustomAttrs extends IPageAttrs = IPageAt
       return entry.call(this);
     }
 
-    const { setting, help, type, label, formGroupAttrs = {}, ...componentAttrs } = entry;
+    const { setting, help, type, label, ...componentAttrs } = entry;
 
     const value = this.setting(setting)();
 
@@ -268,7 +267,7 @@ export default abstract class AdminPage<CustomAttrs extends IPageAttrs = IPageAt
       }
 
       return (
-        <div className="Form-group" {...formGroupAttrs}>
+        <div className="Form-group">
           {label && <label for={inputId}>{label}</label>}
           <div id={helpTextId} className="helpText">
             {help}
